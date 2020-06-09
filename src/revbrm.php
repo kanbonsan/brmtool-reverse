@@ -99,7 +99,7 @@ class Revbrm {
             'brmDistance' => $info['brmDistance'], // 変更なし
             'brmStartTime' => $info['brmStartTime'], // 変更なし
             'brmCurrentStartTime' => $info['brmCurrentStartTime'], // 変更なし
-            'encodedPathAlt' => Kanbonsan\Polyline\Polyline::reverse($info['encodedPathAlt']),
+            'encodedPathAlt' => \Kanbonsan\Polyline\Polyline::reverse($info['encodedPathAlt']),
         );
 
         // キューポイントの変換
