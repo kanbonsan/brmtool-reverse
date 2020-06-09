@@ -287,8 +287,8 @@ class Revbrm {
                             break;
                     }
             }
-            // memo
-            $memo_rev = '（' . $c['memo'] . '）';
+            // memo 備考は変換が難しいので触らない. 必ず直してもらうようにカッコで括っておく.
+            $memo_rev = trim($c['memo']) != '' ? '（' . trim($c['memo']) . '）' : '';
             // openMin, closeMin 再計算される
             $openMin_rev = $closeMin_rev = false;
             // marker 
