@@ -13,7 +13,6 @@ namespace Kanbonsan\Revbrm;
  */
 class Revbrm {
 
-
     /**
      * brmfile データを分解する
      * @param array $brm json_decode されたデータ. 生データ.
@@ -59,7 +58,7 @@ class Revbrm {
     }
 
     /**
-     * $brm_data を受け取ってコースを反転し、$brm_data を返す.
+     * $brm を受け取ってコースを反転し、$brm を返す.
      * 
      * 　やっていること（仕様）
      *      ・ブルベ名 + '-rev' をつける
@@ -75,11 +74,14 @@ class Revbrm {
      *      ・除外区間. 開始・終了ポイントの反転.
      *      ・StreetView 用の設定はそのまま
      * 
-     * @param array $brm_data
-     * @return array $brm_data
+     * @param array $brm
+     * @return array $brm
      */
-    public static function reverse($brm_data) {
+    public static function reverse($brm) {
 
+        // $brm ( JSONをばらしただけ ) を要素に分ける
+        $brm_data = self::disassemble( $brm );
+        
         // $brm_data を分解
         $info = $brm_data['info'];
         $points = $brm_data['points'];
@@ -331,14 +333,15 @@ class Revbrm {
 
         // $display
         $display_rev = $display;    // とりあえず変更なし. そのうち視点を変えるなど.
+        
         // 再び配列にまとめる
-        return array(
+        return self::assemble ( array(
             'info' => $info_rev,
             'points' => $points_rev,
             'cues' => $cues_rev,
             'exclude' => $exclude_rev,
             'display' => $display_rev,
-        );
+        ), true);
     }
 
     /**
