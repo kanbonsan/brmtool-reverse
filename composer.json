@@ -14,5 +14,10 @@
     },
      "require-dev": { 
         "phpunit/phpunit": ">=5.7.0"
+    },
+     "autoload" : {
+        "psr-4" : {
+            "Kanbonsan\\Revbrm\\" : "src/"
+        }
     }
 }
